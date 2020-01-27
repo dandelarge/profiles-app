@@ -1,0 +1,81 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Profiles</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+      <mat-icon>search</mat-icon>
+      <mat-form-field>
+        <input matInput type="search" (keyup)="filter($event.target.value)">
+      </mat-form-field>
+      <button mat-raised-button>
+        <mat-icon>search</mat-icon>
+      </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="table-container mat-elevation-z3">
+  <table mat-table [dataSource]="dataSource" matSort>
+   
+      <!-- Photo Column-->
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>sync_alt</mat-icon></th>
+        <td mat-cell *matCellDef="let profile"> <img [src]="profile.photo" alt="" /></td>
+      </ng-container>
+      
+      <!-- LocalId Column-->
+      <ng-container matColumnDef="localId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="localid"> <strong>Local Id</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.localid}} </td>
+      </ng-container>
+    
+      <!-- Email Column-->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Email address</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.email}} </td>
+      </ng-container>
+    
+      <!-- Name Column-->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="first_name"> <strong>Name</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.prefix}} {{profile.first_name}} {{profile.last_name}} </td>
+      </ng-container>
+    
+      <!-- Phone Column-->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Phone Number</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.phone}} </td>
+      </ng-container>
+    
+      <!-- Address Column-->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Address</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.address}} </td>
+      </ng-container>
+    
+      <!-- Modified Column-->
+      <ng-container matColumnDef="modified">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Modified</strong> </th>
+        <td mat-cell *matCellDef="let profile"> {{profile.modified | date:'yyyy-MM-dd' }} </td>
+      </ng-container>
+    
+      <!-- View Column-->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef> <strong>View</strong> </th>
+        <td mat-cell *matCellDef="let profile">
+          <button mat-icon-button>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+
+    </table>
+  
+    <mat-spinner *ngIf="dataSource.data.length < 1"></mat-spinner>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+
