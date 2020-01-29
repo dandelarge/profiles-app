@@ -47,6 +47,7 @@ export class ProfileDetailComponent implements OnInit {
       })
     ).subscribe( quickFacts => {
       this.quickFacts = quickFacts;
+      console.log(quickFacts);
     });
   }
 }

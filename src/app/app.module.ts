@@ -25,7 +25,7 @@ const profileRoutes: Routes = [
     AppComponent,
   ],
   imports: [
-    RouterModule.forRoot(profileRoutes, {enableTracing: true}),
+    RouterModule.forRoot(profileRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     ProfilesModule,

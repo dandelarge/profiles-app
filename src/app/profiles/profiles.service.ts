@@ -15,6 +15,10 @@ export class ProfilesService {
   }
 
   getProfile(id: number): Observable<ProfileModel> {
+    if(window.history.state.localid) {
+      return new Observable<ProfileModel>(subscriber => subscriber.next(window.history.state));
+    }
+
     return new Observable<ProfileModel>(subscriber => subscriber.next({
       address: 'address',
       first_name: 'first name',
