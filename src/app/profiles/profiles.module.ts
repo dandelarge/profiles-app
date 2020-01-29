@@ -15,11 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { RouterModule } from '@angular/router';
+import { CustomCardSectionComponent } from './profile-detail/custom-card-section.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
-  declarations: [ProfilesComponent, ProfileDetailComponent],
+  declarations: [ProfilesComponent, ProfileDetailComponent, CustomCardSectionComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -35,7 +38,21 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    NgCircleProgressModule.forRoot({
+      radius: 20,
+      toFixed: 0,
+      maxPercent: 100,
+      outerStrokeWidth: 4,
+      outerStrokeColor: "#2196f3",
+      outerStrokeLinecap: "square",
+      titleFontSize: "14",
+      imageHeight: 46,
+      imageWidth: 46,
+      showSubtitle: false,
+      showInnerStroke: false
+    })
   ],
   exports: [
     ProfilesComponent

@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+@mixin profile-detail-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .blue-header {
+      background-color: mat-color($primary);
+      height: 108px;
+      width: 100%;
+      position: absolute;
+      z-index: -1;
+  }
+
+}
+
+@mixin profile-detail-typography($config) {
+    .profile-detail {
+      font: {
+        family: mat-font-family($config, body-1);
+        size: mat-font-size($config, body-1);
+        weight: mat-font-weight($config, body-1);
+      }
+    }
+  }

@@ -5,6 +5,9 @@
 $app-primary: mat-palette($mat-blue);
 $app-accent:  mat-palette($mat-deep-purple, A700);
 
+@import './profile-detail-theme.scss';
+
 $app-theme: mat-light-theme($app-primary, $app-accent);
 
 @include angular-material-theme($app-theme);
+@include profile-detail-theme($app-theme)

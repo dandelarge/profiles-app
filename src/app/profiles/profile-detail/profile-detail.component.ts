@@ -4,6 +4,7 @@ import { ProfilesService } from '../profiles.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ProfileModel } from '../profile.model';
+import { QuickFactsModel } from '../quick-facts.model';
 
 interface ProfileMapItem {
   key: string;
@@ -18,7 +19,9 @@ interface ProfileMapItem {
 export class ProfileDetailComponent implements OnInit {
 
   profile$: Observable<ProfileModel>;
+  profile: ProfileModel;
   profileDetails: ProfileMapItem[];
+  quickFacts: QuickFactsModel;
 
   displayedColumns = ['key', 'value', 'edit'];
 
@@ -30,14 +33,20 @@ export class ProfileDetailComponent implements OnInit {
 
   ngOnInit() {
     //getting the parameters from the url
-    this.route.paramMap.pipe(
+    this.route.paramMap.pipe<ProfileModel, QuickFactsModel>(
       // getting the profile Information from the service
       switchMap( (params: ParamMap) => 
         this.profilesService.getProfile(parseInt(params.get('id')))
-      )
-    ).subscribe( profile => {
-      // we model the profile data so we can feed it to the matTable.
-      this.profileDetails = this.profilesService.buildDetailsArray(profile);
+      ),
+      // Now using the fetched profile data to fill the attributes of the component class, 
+      // then, we fetch the quick facts
+      switchMap( (profile: ProfileModel) => {
+        this.profile = profile;
+        this.profileDetails = this.profilesService.buildDetailsArray(profile);
+        return this.profilesService.getQuickFacts(profile.localid);
+      })
+    ).subscribe( quickFacts => {
+      this.quickFacts = quickFacts;
     });
   }
 }

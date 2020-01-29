@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "./profiles-theme.scss",
+              "./src/profiles-theme.scss",
               "./src/styles.scss"
             ],
             "scripts": []
