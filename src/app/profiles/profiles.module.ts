@@ -16,11 +16,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [ProfilesComponent, ProfileDetailComponent],
   imports: [
     CommonModule,
+    RouterModule,
     HttpClientModule,
     LayoutModule,
     MatToolbarModule,

@@ -1,15 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Profiles</span>
+    <h1 class="mat-h1">Profiles</h1>
   </mat-toolbar-row>
   <mat-toolbar-row>
+    <div class="search-field mat-elevation-z3">
       <mat-icon>search</mat-icon>
-      <mat-form-field>
-        <input matInput type="search" (keyup)="filter($event.target.value)">
-      </mat-form-field>
-      <button mat-raised-button>
-        <mat-icon>search</mat-icon>
-      </button>
+        <input matInput type="search" (keyup)="filter($event.target.value)" placeholder="Search profiles">
+    </div>
+    <button mat-raised-button color="accent">
+      <mat-icon>search</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -24,47 +24,47 @@
       
       <!-- LocalId Column-->
       <ng-container matColumnDef="localId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="localid"> <strong>Local Id</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="localid"> Local Id </th>
         <td mat-cell *matCellDef="let profile"> {{profile.localid}} </td>
       </ng-container>
     
       <!-- Email Column-->
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Email address</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email address </th>
         <td mat-cell *matCellDef="let profile"> {{profile.email}} </td>
       </ng-container>
     
       <!-- Name Column-->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="first_name"> <strong>Name</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="first_name"> Name </th>
         <td mat-cell *matCellDef="let profile"> {{profile.prefix}} {{profile.first_name}} {{profile.last_name}} </td>
       </ng-container>
     
       <!-- Phone Column-->
       <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Phone Number</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
         <td mat-cell *matCellDef="let profile"> {{profile.phone}} </td>
       </ng-container>
     
       <!-- Address Column-->
       <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Address</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
         <td mat-cell *matCellDef="let profile"> {{profile.address}} </td>
       </ng-container>
     
       <!-- Modified Column-->
       <ng-container matColumnDef="modified">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Modified</strong> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified </th>
         <td mat-cell *matCellDef="let profile"> {{profile.modified | date:'yyyy-MM-dd' }} </td>
       </ng-container>
     
       <!-- View Column-->
       <ng-container matColumnDef="view">
-        <th mat-header-cell *matHeaderCellDef> <strong>View</strong> </th>
+        <th mat-header-cell *matHeaderCellDef> View </th>
         <td mat-cell *matCellDef="let profile">
-          <button mat-icon-button>
+          <a [routerLink]="['/profile', profile.localid]" [state]="profile" mat-icon-button>
             <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
+          </a>
         </td>
       </ng-container>
     
